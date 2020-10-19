@@ -3,16 +3,17 @@
 def call(body) {
     def args = [
         // general arguments
-        serviceName: ''
+        branch: '',
+        url:''
     ]
 
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = args
     body()
     echo "INFO: ${args.serviceName}"
-    pipeline {
-        triggers {
-            pollSCM("H/5 6-20 * * 1-5")
-        }
-    }
+    checkout([
+        $class: 'GitSCM',
+        branches: [[name:  args.branch ]],
+        userRemoteConfigs: [[ url: args.url ]]
+    ])
 }
