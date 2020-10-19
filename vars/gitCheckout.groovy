@@ -17,8 +17,8 @@ def call(body) {
     pipeline {
         agent any
         tools {
-            maven
-            jdk
+            maven '3.6.2'
+            jdk '11.0.5'
         }
         stages {
             stage('Git Checkout') {
