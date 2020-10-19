@@ -11,9 +11,11 @@ def call(body) {
     body.delegate = args
     body()
     echo "INFO: ${args.serviceName}"
+    pipeline{
     checkout([
         $class: 'GitSCM',
         branches: [[name:  args.branch ]],
         userRemoteConfigs: [[ url: args.url ]]
     ])
+    }
 }
