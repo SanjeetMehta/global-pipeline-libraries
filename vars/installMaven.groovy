@@ -3,5 +3,3 @@
 def call(String projectName="petStore") {
     echo "Name of maven project is:, ${name}."
 }
-
-call()
