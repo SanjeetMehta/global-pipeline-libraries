@@ -4,13 +4,15 @@ def call(body) {
     def args = [
         // general arguments
         branch: '',
-        url:''
+        url:'',
+        service:''
     ]
 
     body.resolveStrategy = Closure.DELEGATE_FIRST
     body.delegate = args
     body()
-    echo "INFO: ${args.serviceName}"
+    echo "INFO: ${args.service}"
+    echo "INFO: ${args.branch}"
 
     pipeline {
         agent any
